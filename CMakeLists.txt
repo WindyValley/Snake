@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.10)
+project(Snake CXX)
+
+include(cmake/resources.cmake)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(SDL2 REQUIRED SDL2)
+if(SDL2_FOUND)
+    message(STATUS "======SDL2_INCLUDE_DIRS:${SDL2_INCLUDE_DIRS}")
+else(SDL2_FOUND)
+    message(FATAL_ERROR "======ERROR:SDL2未找到")
+endif(SDL2_FOUND)
+
+pkg_check_modules(SDL2_image REQUIRED SDL2_image)
+if(SDL2_image_FOUND)
+    message(STATUS "======SDL2_image_INCLUDE_DIRS:${SDL2_image_INCLUDE_DIRS}")
+    message(STATUS "======SDL2_image_LIBRARIES:${SDL2_image_LIBRARIES}")
+else(SDL2_image_FOUND)
+    message(FATAL_ERROR "======ERROR:SDL2_image未找到")
+endif(SDL2_image_FOUND)
+
+pkg_check_modules(SDL2_mixer REQUIRED SDL2_mixer)
+if(SDL2_mixer_FOUND)
+    message(STATUS "======SDL2_mixer_INCLUDE_DIRS:${SDL2_mixer_INCLUDE_DIRS}")
+    message(STATUS "======SDL2_mixer_LIBRARIES:${SDL2_mixer_LIBRARIES}")
+else(SDL2_mixer_FOUND)
+    message(FATAL_ERROR "======ERROR:SDL2_mixer未找到")
+endif(SDL2_mixer_FOUND)
+
+pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
+if(SDL2_ttf_FOUND)
+    message(STATUS "======SDL2_ttf_INCLUDE_DIRS:${SDL2_ttf_INCLUDE_DIRS}")
+    message(STATUS "======SDL2_ttf_LIBRARIES:${SDL2_ttf_LIBRARIES}")
+else(SDL2_ttf_FOUND)
+    message(FATAL_ERROR "======ERROR:SDL2_ttf未找到")
+endif(SDL2_ttf_FOUND)
+
+if(CMAKE_BUILD_TYPE STREQUAL Release)
+    add_link_options("-mwindows")
+endif()
+
+add_subdirectory(src)
+add_subdirectory(res)
