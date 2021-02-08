@@ -157,6 +157,7 @@ public:
 
   fail:
     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "初始化失败");
+    UnInit();
     return false;
   }
 

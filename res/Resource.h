@@ -23,6 +23,14 @@ private:
     return Resource(_binary_##x##_start, _binary_##x##_end);                   \
   })()
 
+/**
+ *#define LOAD_RESOURCE(x) \
+ *  ([]() { \
+ *    extern const char _binary_##x##_start, _binary_##x##_end; \
+ *    return Resource(&_binary_##x##_start, &_binary_##x##_end); \
+ *  })()
+ */
+
 extern Resource res_bk;
 extern Resource res_tada;
 extern Resource res_body;
