@@ -39,7 +39,7 @@ else(SDL2_ttf_FOUND)
     message(FATAL_ERROR "======ERROR:SDL2_ttf未找到")
 endif(SDL2_ttf_FOUND)
 
-if(CMAKE_BUILD_TYPE STREQUAL Release)
+if(CMAKE_BUILD_TYPE STREQUAL Release AND WIN32)
     add_link_options("-mwindows")
 endif()
 
