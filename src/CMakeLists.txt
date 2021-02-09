@@ -7,3 +7,8 @@ list(APPEND THIRD_LIBRARIES ${SDL2_LIBRARIES} ${SDL2_ttf_LIBRARIES} ${SDL2_mixer
 target_include_directories(Snake PRIVATE ${THIRD_INC_DIRS})
 target_link_directories(Snake PUBLIC ${THIRD_LINK_DIRS})
 target_link_libraries(Snake ${THIRD_LIBRARIES} res_lib)
+
+install(TARGETS Snake DESTINATION .)
+install(CODE "include(BundleUtilities)
+fixup_bundle(\${CMAKE_INSTALL_PREFIX}/Snake.exe \"\" \"\")"
+)
